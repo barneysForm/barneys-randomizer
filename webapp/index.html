@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Barney's Розыгрыш</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root{
+      --bg: #2b0b3a; /* тёмно-фиолетовый фон */
+      --card: #1f1530;
+      --button: #1e63ff; /* синяя кнопка */
+      --button-text: #ffffff; /* белый текст */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:white;
+    }
+    .wrap{
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .card{
+      width:100%;
+      max-width:420px;
+      background:var(--card);
+      padding:28px;
+      border-radius:16px;
+      text-align:center;
+      box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    }
+    .logo{
+      font-size:60px;
+      margin-bottom:8px;
+    }
+    h1{
+      margin:0 0 12px;
+      font-size:22px;
+      font-weight:600;
+    }
+    p{
+      margin:0 0 18px;
+      font-size:15px;
+      color:#d7cbea;
+    }
+    button{
+      background:var(--button);
+      color:var(--button-text);
+      border:none;
+      border-radius:12px;
+      padding:14px 20px;
+      width:100%;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+    }
+    .small{
+      margin-top:12px;
+      font-size:13px;
+      color:#b8aad6;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="logo">🧸</div>
+      <h1>Barney's Розыгрыш</h1>
+      <p id="status">Нажми кнопку ниже, чтобы участвовать!</p>
+      <button id="joinBtn">Участвовать</button>
+      <div class="small">Подписка на @barneysform обязательна</div>
+    </div>
+  </div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand();
+
+    document.getElementById("joinBtn").onclick = () => {
+      document.getElementById("status").innerHTML = "Отправляю данные...";
+      tg.sendData(JSON.stringify({ action: "check_subs" }));
+    };
+  </script>
+
+</body>
+</html>
